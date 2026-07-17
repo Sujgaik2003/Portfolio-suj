@@ -529,6 +529,58 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .contact .lead{margin:0 auto 32px;text-align:center}
 .contact__cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 
+/* --- contact grid: direct lines + interactive form --- */
+.contact__grid{
+  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(18px,3vw,40px);max-width:940px;margin:38px auto 0;text-align:left;align-items:start;
+}
+.cinfo{display:flex;flex-direction:column;gap:12px}
+.cinfo__line{
+  display:flex;align-items:center;gap:13px;padding:14px 16px;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  transition:border-color .35s var(--ease),transform .35s var(--ease),box-shadow .4s;
+}
+a.cinfo__line:hover{border-color:var(--signal-32);transform:translateY(-2px);box-shadow:0 14px 34px -16px var(--signal-32)}
+.cinfo__ic{
+  width:38px;height:38px;flex:none;display:grid;place-content:center;border-radius:9px;
+  border:1px solid var(--line-2);color:var(--signal);background:var(--panel-2);
+}
+.cinfo__ic .ico{font-size:16px}
+.cinfo__k{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:2px}
+.cinfo__v{display:block;font-size:14.5px;color:var(--ink);word-break:break-word}
+.cinfo__socials{margin-top:4px}
+
+.cform{
+  position:relative;padding:clamp(18px,2.4vw,28px);
+  border:1px solid var(--line-2);border-radius:14px;background:var(--panel);
+  display:flex;flex-direction:column;gap:14px;isolation:isolate;
+}
+.cform__row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.field input,.field textarea{
+  width:100%;padding:12px 14px;border-radius:9px;
+  border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink);
+  font-family:var(--f-body);font-weight:300;font-size:14.5px;line-height:1.5;
+  transition:border-color .3s,box-shadow .3s,background .3s;
+}
+.field textarea{resize:vertical;min-height:120px}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-3)}
+.field input:focus,.field textarea:focus{
+  outline:none;border-color:var(--signal-32);background:var(--panel);
+  box-shadow:0 0 0 3px var(--signal-08);
+}
+.cform__honey{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.cform__submit{align-self:flex-start;margin-top:2px}
+.cform__note{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-3);
+  min-height:15px;transition:color .3s;
+}
+.cform__note a{color:var(--signal)}
+.cform__note.ok{color:var(--signal)}
+.cform__note.err{color:#ff7a6b}
+.cform.busy .cform__submit{opacity:.6;pointer-events:none}
+
 /* ============ footer ============ */
 .foot{border-top:1px solid var(--line);padding:26px var(--gut);position:relative;z-index:2}
 .foot__in{max-width:var(--maxw);margin-inline:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
@@ -565,6 +617,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .grid-2,.edu{grid-template-columns:1fr}
   .proj__row{grid-template-columns:auto minmax(0,1fr);gap:14px}
   .proj__arrow{display:none}
+  .contact__grid{grid-template-columns:1fr;max-width:560px}
+}
+@media(max-width:460px){
+  .cform__row{grid-template-columns:1fr}
 }
 @media(max-width:560px){
   .hero__name{font-size:clamp(42px,13.4vw,72px)}
@@ -592,6 +648,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
 <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
 <symbol id="i-instagram" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
 <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
 <symbol id="i-award" viewBox="0 0 24 24"><path d="m15.48 12.89 1.51 8.53a.5.5 0 0 1-.81.47l-3.58-2.69a1 1 0 0 0-1.2 0l-3.58 2.69a.5.5 0 0 1-.81-.47l1.51-8.53"/><circle cx="12" cy="8" r="6"/></symbol>
@@ -1020,11 +1078,59 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="eyebrow rv" style="justify-content:center">Contact <span>/ 07</span></div>
     <h2 class="contact__h rv" data-d="1">Let's build<br><span>something</span></h2>
     <p class="lead rv" data-d="2">I'm always up for a conversation about applied AI — agentic systems, LLM pipelines, or the reinforcement learning problem you can't get to converge.</p>
-    <div class="contact__cta rv" data-d="3">
-      <a class="btn btn--solid" href="mailto:Sujeetsg1372@gmail.com"><svg class="ico"><use href="#i-mail"/></svg> Sujeetsg1372@gmail.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/sujeet-gaikwad03" target="_blank" rel="noopener"><svg class="ico"><use href="#i-linkedin"/></svg> LinkedIn</a>
-      <a class="btn" href="https://github.com/Sujgaik2003" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg> GitHub</a>
-      <a class="btn" href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&amp;utm_medium=copy_link&amp;utm_content=tfuv62p" target="_blank" rel="noopener"><svg class="ico"><use href="#i-instagram"/></svg> Instagram</a>
+    <div class="contact__grid rv" data-d="3">
+
+      <!-- direct lines -->
+      <div class="cinfo">
+        <a class="cinfo__line" href="mailto:sujeetsg1372@gmail.com">
+          <span class="cinfo__ic"><svg class="ico"><use href="#i-mail"/></svg></span>
+          <span><span class="cinfo__k">Email</span><span class="cinfo__v">sujeetsg1372@gmail.com</span></span>
+        </a>
+        <a class="cinfo__line" href="tel:+919359416735">
+          <span class="cinfo__ic"><svg class="ico"><use href="#i-phone"/></svg></span>
+          <span><span class="cinfo__k">Phone</span><span class="cinfo__v">+91 93594 16735</span></span>
+        </a>
+        <div class="cinfo__line">
+          <span class="cinfo__ic"><svg class="ico"><use href="#i-pin"/></svg></span>
+          <span><span class="cinfo__k">Based in</span><span class="cinfo__v">Pune, India</span></span>
+        </div>
+        <div class="foot__s cinfo__socials">
+          <a href="https://www.linkedin.com/in/sujeet-gaikwad03" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico"><use href="#i-linkedin"/></svg></a>
+          <a href="https://github.com/Sujgaik2003" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico"><use href="#i-github"/></svg></a>
+          <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&amp;utm_medium=copy_link&amp;utm_content=tfuv62p" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-instagram"/></svg></a>
+        </div>
+      </div>
+
+      <!-- interactive form (FormSubmit.co) -->
+      <form class="cform" id="cform" action="https://formsubmit.co/sujeetsg1372@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from your portfolio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="cform__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="cform__row">
+          <div class="field">
+            <label for="cf-name">Your name</label>
+            <input id="cf-name" name="name" type="text" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" placeholder="jane@company.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-subject">Subject</label>
+          <input id="cf-subject" name="subject" type="text" placeholder="Role, project, or idea">
+        </div>
+        <div class="field">
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" name="message" placeholder="Tell me what you're building or the problem you're solving." required></textarea>
+        </div>
+        <button class="btn btn--solid cform__submit" type="submit">
+          <svg class="ico"><use href="#i-send"/></svg> <span class="cform__submit-txt">Send message</span>
+        </button>
+        <p class="cform__note" id="cformNote" role="status" aria-live="polite"></p>
+      </form>
+
     </div>
   </div>
 </section>
@@ -1334,6 +1440,50 @@ const setMenu = open => {
 burger.addEventListener('click', () => setMenu(!sheet.classList.contains('open')));
 $$('#sheet a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+/* ---------------------------------------------------------------
+   9. CONTACT FORM  (FormSubmit.co — AJAX, no page reload)
+--------------------------------------------------------------- */
+const cform = $('#cform');
+if (cform) {
+  const note   = $('#cformNote');
+  const btnTxt = $('.cform__submit-txt', cform);
+  const ENDPOINT = 'https://formsubmit.co/ajax/sujeetsg1372@gmail.com';
+
+  const say = (msg, kind) => { note.className = 'cform__note' + (kind ? ' ' + kind : ''); note.innerHTML = msg; };
+
+  cform.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (cform.querySelector('[name="_honey"]').value) return;   // bot trap
+
+    cform.classList.add('busy');
+    if (btnTxt) btnTxt.textContent = 'Sending…';
+    say('Transmitting…');
+
+    try {
+      const res  = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(cform)
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && String(data.success) === 'true') {
+        cform.reset();
+        say('✓ Message sent — I\'ll get back to you soon.', 'ok');
+        if (btnTxt) btnTxt.textContent = 'Sent';
+        setTimeout(() => { if (btnTxt) btnTxt.textContent = 'Send message'; }, 4500);
+      } else {
+        throw new Error(data.message || 'Request failed');
+      }
+    } catch (err) {
+      say('Couldn\'t send — email me directly at <a href="mailto:sujeetsg1372@gmail.com">sujeetsg1372@gmail.com</a>.', 'err');
+      if (btnTxt) btnTxt.textContent = 'Send message';
+    } finally {
+      cform.classList.remove('busy');
+    }
+  });
+}
 })();
 </script>
 

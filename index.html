@@ -210,7 +210,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ============ hero ============ */
 .hero{padding-top:calc(var(--nav-h) + clamp(46px,8vw,86px));padding-bottom:clamp(40px,5vw,64px);position:relative;z-index:2}
-.hero__grid{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.82fr);gap:clamp(28px,4vw,64px);align-items:end}
+.hero__grid{display:block}
 
 .hero__status{
   display:inline-flex;align-items:center;gap:9px;margin-bottom:26px;
@@ -711,7 +711,6 @@ a.cinfo__line:hover{border-color:var(--signal-32);transform:translateY(-2px);box
   <div class="wrap">
     <div class="hero__grid">
       <div>
-        <div class="hero__status"><span class="pulse"></span> Pune, India — open to AI/ML roles</div>
         <h1 class="hero__name">
           <span class="ln"><span>Sujeet</span></span>
           <span class="ln"><span class="grad">Gaikwad</span></span>
@@ -729,13 +728,6 @@ a.cinfo__line:hover{border-color:var(--signal-32);transform:translateY(-2px);box
             <svg class="ico"><use href="#i-mail"/></svg> Get in touch
           </a>
         </div>
-      </div>
-
-      <div class="portrait rv" data-d="3">
-        <i class="portrait__cnr"></i><i class="portrait__cnr"></i>
-        <div class="portrait__scan"></div>
-        <img src="sujeet.jpg" alt="Portrait of Sujeet Gaikwad" width="800" height="800" fetchpriority="high">
-        <div class="portrait__tag">Sujeet Gaikwad <b>/ AI Engineer</b></div>
       </div>
     </div>
 
@@ -784,6 +776,7 @@ a.cinfo__line:hover{border-color:var(--signal-32);transform:translateY(-2px);box
           <p class="about__drop">I'm an AI engineer, currently an Associate Consultant at <b>EY</b> in Pune, building AI automation, LLM pipelines and agentic systems on Python and Azure. Around two years in the industry so far — most of it spent on the unfashionable half of applied AI: retrieval, evaluation, orchestration, and backends that stay standing when the model gets it wrong.</p>
           <p>Before consulting I was an AI research intern at <b>DRDO</b>, teaching a humanoid robot to walk. Not metaphorically — a PPO policy in MuJoCo learning bipedal gait, stair ascent and descent, and curved paths from a reward function I spent months arguing with. It's still the clearest lesson I have about ML: <b>the reward is the spec, and the spec is wrong the first time.</b></p>
           <p>Since then the work has moved toward generative AI and agentic systems, but the instinct hasn't changed — build it, measure it honestly, keep the loop tight. Along the way I picked up a <a class="u" href="#research">granted patent</a> on real-time sentiment analysis and sentiment reversal for political news, and an <a class="u" href="#research">IEEE paper</a> on ML for stock market trend prediction. Right now I'm most interested in agents that plan, call tools, and recover when a step fails.</p>
+          <p>Above all, I'm genuinely <b>passionate about generative AI, agentic AI and machine learning</b> — the part of the field where systems reason, act, and get better with feedback. I like turning that curiosity into things that ship: agents that plan and use tools, LLM pipelines that hold up in production, and models that learn from their own mistakes.</p>
         </div>
       </div>
       <div class="facts rv" data-d="3">

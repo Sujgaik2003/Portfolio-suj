@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sujeet Gaikwad — AI Engineer</title>
+<meta name="description" content="Sujeet Gaikwad — AI Engineer. Associate Consultant at EY. Ex-DRDO AI Research Intern. Patent holder, IEEE author. Generative AI, agentic systems, and reinforcement learning.">
+<meta name="author" content="Sujeet Gaikwad">
+<meta name="theme-color" content="#08090B">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Sujeet Gaikwad — AI Engineer">
+<meta property="og:description" content="Generative AI, agentic systems, and reinforcement learning. Associate Consultant at EY. Ex-DRDO. Patent holder, IEEE author.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/jpeg" href="sujeet.jpg">
+<link rel="apple-touch-icon" href="sujeet.jpg">
+<style>
+/* ============================================================
+   SUJEET GAIKWAD — PORTFOLIO
+   Design system: "instrument panel"
+   Palette : void black + a single amber signal
+   Type    : Archivo (display) / IBM Plex Sans (body) / IBM Plex Mono (data)
+   ============================================================ */
+
+:root{
+  --void:#08090B;
+  --panel:#0E1013;
+  --panel-2:#121519;
+  --line:#1D2126;
+  --line-2:#2C323A;
+  --ink:#EDEFF2;
+  --ink-2:#98A0A9;
+  --ink-3:#5B626C;
+  --signal:#FFB627;
+  --signal-hi:#FFD98A;
+  --signal-08:rgba(255,182,39,.08);
+  --signal-16:rgba(255,182,39,.16);
+  --signal-32:rgba(255,182,39,.32);
+
+  --f-display:'Archivo',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --ease:cubic-bezier(.22,.72,.15,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  --gut:clamp(18px,4.6vw,68px);
+  --maxw:1240px;
+  --nav-h:66px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--void);color:var(--ink);
+  font-family:var(--f-body);font-weight:300;
+  font-size:clamp(15px,.4vw + 14px,17px);line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body.is-locked{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--signal);color:#000}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+/* --- scrollbar --- */
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:#23282F;border-radius:9px}
+::-webkit-scrollbar-thumb:hover{background:var(--signal-32)}
+
+/* ============ ambient layers ============ */
+.grain{
+  position:fixed;inset:-120%;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 7s steps(6) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}   16%{transform:translate(-4%,-3%)}
+  33%{transform:translate(3%,-5%)}    50%{transform:translate(-2%,4%)}
+  66%{transform:translate(4%,2%)}     83%{transform:translate(-3%,3%)}
+}
+.spot{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,20%),rgba(255,182,39,.055),transparent 62%);
+  transition:opacity .5s var(--ease);
+}
+.vignette{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(140% 100% at 50% 0%,transparent 42%,rgba(0,0,0,.6) 100%);
+}
+
+/* ============ boot sequence ============ */
+.boot{
+  position:fixed;inset:0;z-index:200;background:var(--void);
+  display:grid;place-content:center;gap:18px;justify-items:center;
+  transition:transform 1s var(--ease-out),opacity .6s ease .35s;
+}
+.boot.done{transform:translateY(-101%);opacity:0;pointer-events:none}
+.boot__id{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.42em;
+  color:var(--ink-2);text-transform:uppercase;padding-left:.42em;
+}
+.boot__bar{width:min(230px,52vw);height:1px;background:var(--line-2);overflow:hidden}
+.boot__fill{height:100%;width:0;background:var(--signal);box-shadow:0 0 12px var(--signal)}
+.boot__num{font-family:var(--f-mono);font-size:11px;color:var(--signal);letter-spacing:.16em}
+
+/* ============ scroll progress ============ */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:100%;z-index:90;
+  transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--signal-32),var(--signal));
+  box-shadow:0 0 14px var(--signal-32);
+}
+
+/* ============ nav ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:80;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--gut);
+  border-bottom:1px solid transparent;
+  transition:background .45s var(--ease),border-color .45s var(--ease),backdrop-filter .45s;
+}
+.nav.stuck{
+  background:rgba(8,9,11,.72);backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom-color:var(--line);
+}
+.brand{display:flex;align-items:center;gap:11px}
+.brand__mark{
+  width:32px;height:32px;flex:none;object-fit:cover;object-position:50% 20%;
+  border:1px solid var(--line-2);border-radius:50%;background:var(--panel);
+  transition:border-color .35s,box-shadow .35s,transform .35s;
+}
+.brand:hover .brand__mark{border-color:var(--signal-32);box-shadow:0 0 20px var(--signal-16);transform:scale(1.05)}
+.brand__txt{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.2em;color:var(--ink-2);text-transform:uppercase}
+
+.nav__links{display:flex;align-items:center;gap:4px}
+.nav__link{
+  position:relative;font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);padding:8px 12px;border-radius:6px;
+  transition:color .3s var(--ease);
+}
+.nav__link::after{
+  content:'';position:absolute;left:12px;right:12px;bottom:2px;height:1px;
+  background:var(--signal);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .4s var(--ease);
+}
+.nav__link:hover,.nav__link.active{color:var(--ink)}
+.nav__link.active::after,.nav__link:hover::after{transform:scaleX(1)}
+.nav__link.active{color:var(--signal)}
+
+.burger{display:none;width:38px;height:38px;place-content:center;border:1px solid var(--line-2);border-radius:8px}
+.burger span{display:block;width:15px;height:1.5px;background:var(--ink);transition:transform .35s var(--ease),opacity .25s}
+.burger span+span{margin-top:4px}
+.burger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+.sheet{
+  position:fixed;inset:0;z-index:79;background:rgba(8,9,11,.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;justify-content:center;gap:2px;
+  padding:var(--nav-h) var(--gut) 0;
+  clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--ease-out);
+}
+.sheet.open{clip-path:inset(0 0 0 0)}
+.sheet a{
+  font-family:var(--f-display);font-variation-settings:'wdth' 105,'wght' 600;
+  font-size:clamp(26px,7vw,40px);letter-spacing:-.02em;padding:9px 0;
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:14px;
+  opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+}
+.sheet.open a{opacity:1;transform:none}
+.sheet a:hover{color:var(--signal)}
+.sheet a i{font-family:var(--f-mono);font-size:11px;font-style:normal;color:var(--signal);letter-spacing:.1em}
+
+/* ============ layout primitives ============ */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut);position:relative;z-index:2}
+.sec{padding-block:clamp(72px,10vw,132px);position:relative;z-index:2;border-top:1px solid var(--line)}
+.sec--flush{border-top:0}
+
+.eyebrow{
+  display:flex;align-items:center;gap:11px;margin-bottom:22px;
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.eyebrow::before{
+  content:'';width:6px;height:6px;flex:none;border-radius:50%;
+  background:var(--signal);box-shadow:0 0 10px var(--signal);
+}
+.eyebrow span{color:var(--signal)}
+.eyebrow i{flex:1;height:1px;background:var(--line);font-style:normal}
+
+.h2{
+  font-family:var(--f-display);font-variation-settings:'wdth' 112,'wght' 750;
+  font-size:clamp(30px,5.2vw,54px);line-height:1.02;letter-spacing:-.032em;
+  margin-bottom:16px;
+}
+.h2 em{font-style:normal;color:var(--signal)}
+.lead{color:var(--ink-2);max-width:62ch;font-size:clamp(15px,.35vw + 14px,17px)}
+
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+
+/* icons */
+.ico{width:1em;height:1em;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============ hero ============ */
+.hero{padding-top:calc(var(--nav-h) + clamp(46px,8vw,86px));padding-bottom:clamp(40px,5vw,64px);position:relative;z-index:2}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.82fr);gap:clamp(28px,4vw,64px);align-items:end}
+
+.hero__status{
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:26px;
+  padding:6px 13px 6px 10px;border:1px solid var(--line-2);border-radius:100px;
+  background:var(--panel);
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-2);
+}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--signal);position:relative;flex:none}
+.pulse::after{
+  content:'';position:absolute;inset:0;border-radius:50%;background:var(--signal);
+  animation:pulse 2.1s var(--ease) infinite;
+}
+@keyframes pulse{0%{transform:scale(1);opacity:.9}70%{transform:scale(3.6);opacity:0}100%{opacity:0}}
+
+.hero__name{
+  font-family:var(--f-display);
+  font-variation-settings:'wdth' 118,'wght' 800;
+  font-size:clamp(50px,11.4vw,148px);line-height:.84;letter-spacing:-.045em;
+  text-transform:uppercase;margin-bottom:26px;
+}
+.hero__name .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.hero__name .ln>span{display:block;transform:translateY(104%);transition:transform 1.05s var(--ease-out)}
+.ready .hero__name .ln>span{transform:none}
+.hero__name .ln+.ln>span{transition-delay:.1s}
+.hero__name .grad{
+  background:linear-gradient(94deg,var(--ink) 20%,var(--signal) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;
+}
+
+.hero__role{
+  font-family:var(--f-body);font-weight:300;color:var(--ink-2);
+  font-size:clamp(15.5px,.5vw + 14px,19px);line-height:1.55;max-width:50ch;margin-bottom:30px;
+}
+.hero__role b{color:var(--ink);font-weight:500}
+.hero__role u{text-decoration:none;color:var(--signal)}
+
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:9px;overflow:hidden;
+  padding:12px 20px;border-radius:9px;border:1px solid var(--line-2);
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink);background:var(--panel);
+  transition:border-color .35s var(--ease),color .35s,transform .35s var(--ease),box-shadow .45s;
+}
+.btn .ico{font-size:14px;transition:transform .35s var(--ease)}
+.btn::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(140px circle at var(--bx,50%) var(--by,50%),var(--signal-16),transparent 70%);
+  opacity:0;transition:opacity .4s;
+}
+.btn:hover{border-color:var(--signal-32);transform:translateY(-2px);box-shadow:0 10px 34px -12px var(--signal-32)}
+.btn:hover::before{opacity:1}
+.btn:hover .ico{transform:translate(2px,-2px)}
+.btn--solid{background:var(--signal);border-color:var(--signal);color:#0A0700;font-weight:600}
+.btn--solid:hover{background:var(--signal-hi);border-color:var(--signal-hi);box-shadow:0 12px 40px -10px var(--signal)}
+
+/* portrait */
+.portrait{position:relative;width:100%;max-width:270px;margin-left:auto;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);background:var(--panel);isolation:isolate}
+.portrait::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,transparent 42%,rgba(8,9,11,.72) 100%);
+}
+.portrait img{
+  width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;
+  filter:grayscale(.62) contrast(1.06) brightness(.95);
+  transform:scale(1.03);
+  transition:filter .8s var(--ease),transform 1.1s var(--ease);
+}
+.portrait:hover img{filter:grayscale(0) contrast(1.02) brightness(1);transform:scale(1.06)}
+.portrait__scan{
+  position:absolute;left:0;right:0;height:26%;z-index:3;pointer-events:none;
+  background:linear-gradient(180deg,transparent,var(--signal-08) 46%,var(--signal-16) 50%,var(--signal-08) 54%,transparent);
+  transform:translateY(-120%);
+}
+.portrait:hover .portrait__scan{animation:scan 1.5s var(--ease)}
+@keyframes scan{to{transform:translateY(500%)}}
+.portrait__tag{
+  position:absolute;left:13px;bottom:12px;z-index:4;
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);
+}
+.portrait__tag b{color:var(--signal);font-weight:500}
+.portrait__cnr{position:absolute;width:13px;height:13px;z-index:4;border:1px solid var(--signal-32);transition:border-color .4s}
+.portrait__cnr:nth-of-type(1){top:9px;left:9px;border-right:0;border-bottom:0}
+.portrait__cnr:nth-of-type(2){top:9px;right:9px;border-left:0;border-bottom:0}
+.portrait:hover .portrait__cnr{border-color:var(--signal)}
+
+/* ============ FIG.1 — the signature: PPO reward curve ============ */
+.figure{
+  margin-top:clamp(34px,4.4vw,58px);border:1px solid var(--line);border-radius:14px;
+  background:linear-gradient(180deg,var(--panel),#0A0C0E);overflow:hidden;position:relative;
+}
+.figure__head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:11px 16px;border-bottom:1px solid var(--line);
+}
+.figure__ttl{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+.figure__ttl b{color:var(--signal);font-weight:500}
+.figure__legend{display:flex;gap:15px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
+.figure__legend i{display:inline-flex;align-items:center;gap:6px;font-style:normal}
+.figure__legend i::before{content:'';width:13px;height:2px;border-radius:2px;background:var(--signal-32)}
+.figure__legend i.hi::before{background:var(--signal);box-shadow:0 0 8px var(--signal)}
+.figure__body{position:relative;height:clamp(170px,21vw,248px)}
+.figure__body canvas{width:100%;height:100%;display:block}
+.figure__y{
+  position:absolute;left:8px;top:50%;transform:rotate(-90deg) translateX(-50%);transform-origin:0 0;
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--ink-3);white-space:nowrap;
+}
+.figure__x{position:absolute;right:14px;bottom:7px;font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--ink-3)}
+.figure__cap{padding:10px 16px;border-top:1px solid var(--line);font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink-3);line-height:1.6}
+
+/* ============ telemetry rail ============ */
+.rail{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;margin-top:22px;overflow:hidden;background:var(--panel)}
+.rail__cell{padding:18px 16px;border-right:1px solid var(--line);position:relative;overflow:hidden;transition:background .4s}
+.rail__cell:last-child{border-right:0}
+.rail__cell::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+.rail__cell:hover{background:var(--panel-2)}
+.rail__cell:hover::after{transform:scaleX(1)}
+.rail__n{
+  font-family:var(--f-display);font-variation-settings:'wdth' 112,'wght' 720;
+  font-size:clamp(24px,3vw,36px);line-height:1;letter-spacing:-.03em;color:var(--ink);
+}
+.rail__n sup{font-size:.42em;color:var(--signal);vertical-align:super;font-variation-settings:'wght' 600}
+.rail__l{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-3);margin-top:7px}
+
+/* ============ ticker ============ */
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:13px 0;background:var(--panel);position:relative;z-index:2}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:14vw;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--panel),transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,var(--panel),transparent)}
+.ticker__track{display:flex;width:max-content;animation:slide 42s linear infinite}
+.ticker:hover .ticker__track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.ticker__set{display:flex;align-items:center;flex:none}
+.ticker__item{
+  display:inline-flex;align-items:center;gap:22px;padding-inline:22px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  transition:color .3s;white-space:nowrap;
+}
+.ticker__item:hover{color:var(--signal)}
+.ticker__item::after{content:'';width:3px;height:3px;border-radius:50%;background:var(--line-2);flex:none}
+
+/* ============ about ============ */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:clamp(28px,4.4vw,72px);align-items:start}
+.about p{color:var(--ink-2);margin-bottom:17px;max-width:60ch}
+.about p:last-child{margin-bottom:0}
+.about b{color:var(--ink);font-weight:500}
+.about .u{color:var(--signal);border-bottom:1px solid var(--signal-32);transition:border-color .3s}
+.about .u:hover{border-color:var(--signal)}
+.about__drop::first-letter{
+  font-family:var(--f-display);font-variation-settings:'wdth' 100,'wght' 800;
+  float:left;font-size:60px;line-height:.82;padding:5px 12px 0 0;color:var(--signal);
+}
+.facts{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.fact{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 16px;border-bottom:1px solid var(--line);transition:background .3s,padding-left .35s var(--ease)}
+.fact:last-child{border-bottom:0}
+.fact:hover{background:var(--panel-2);padding-left:21px}
+.fact__k{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);flex:none}
+.fact__v{font-size:13.5px;color:var(--ink);text-align:right;font-weight:400}
+.fact__v em{font-style:normal;color:var(--signal)}
+
+/* ============ timeline ============ */
+.tl{position:relative;padding-left:clamp(0px,3vw,34px)}
+.tl__line{position:absolute;left:clamp(0px,3vw,34px);top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl__line::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--signal),transparent);transform:scaleY(var(--p,0));transform-origin:50% 0;transition:transform .2s linear}
+.job{position:relative;padding:clamp(22px,2.6vw,32px) 0 clamp(22px,2.6vw,32px) clamp(24px,3vw,44px);border-bottom:1px solid var(--line)}
+.job:last-child{border-bottom:0}
+.job__dot{
+  position:absolute;left:-4.5px;top:clamp(28px,2.9vw,40px);width:9px;height:9px;border-radius:50%;
+  background:var(--void);border:1px solid var(--line-2);transition:border-color .4s,box-shadow .4s,background .4s;
+}
+.job:hover .job__dot,.job.now .job__dot{background:var(--signal);border-color:var(--signal);box-shadow:0 0 0 4px var(--signal-08),0 0 18px var(--signal)}
+.job__top{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:5px}
+.job__ttl{font-family:var(--f-display);font-variation-settings:'wdth' 106,'wght' 680;font-size:clamp(19px,2vw,26px);letter-spacing:-.022em;line-height:1.16;transition:color .35s}
+.job:hover .job__ttl{color:var(--signal)}
+.job__date{font-family:var(--f-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);flex:none;white-space:nowrap}
+.job__org{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px;font-size:14px;color:var(--ink-2)}
+.job__logo{
+  width:34px;height:34px;flex:none;display:grid;place-content:center;border-radius:8px;
+  border:1px solid var(--line-2);background:var(--panel-2);
+  font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.02em;color:var(--ink-2);
+  transition:border-color .4s,color .4s,box-shadow .4s;
+}
+.job:hover .job__logo{border-color:var(--signal-32);color:var(--signal);box-shadow:0 0 22px -6px var(--signal-32)}
+.job__org b{color:var(--ink);font-weight:500}
+.job__org i{font-style:normal;color:var(--ink-3)}
+.job__desc{color:var(--ink-2);max-width:66ch;font-size:14.5px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  padding:4.5px 9px;border-radius:5px;border:1px solid var(--line);background:var(--panel);
+  color:var(--ink-3);transition:color .3s,border-color .3s,transform .3s var(--ease),background .3s;
+}
+.chip:hover{color:var(--signal);border-color:var(--signal-32);transform:translateY(-2px);background:var(--panel-2)}
+.badge-now{
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--signal);border:1px solid var(--signal-32);border-radius:100px;padding:2.5px 9px;
+  background:var(--signal-08);
+}
+
+/* ============ card grid + spotlight ============ */
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{
+  position:relative;border:1px solid var(--line);border-radius:14px;background:var(--panel);
+  padding:clamp(20px,2.4vw,30px);overflow:hidden;isolation:isolate;
+  transition:border-color .45s var(--ease),transform .45s var(--ease),background .45s;
+}
+.card::before{
+  content:'';position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .45s;
+  background:radial-gradient(340px circle at var(--cx,50%) var(--cy,50%),var(--signal-08),transparent 62%);
+}
+.card:hover{border-color:var(--line-2);transform:translateY(-3px);background:var(--panel-2)}
+.card:hover::before{opacity:1}
+.card__idx{position:absolute;top:16px;right:18px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--line-2);transition:color .4s}
+.card:hover .card__idx{color:var(--signal-32)}
+
+/* ============ research / IP ============ */
+.ip{display:flex;flex-direction:column;gap:14px}
+.ip__card{
+  position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;isolation:isolate;
+  background:linear-gradient(180deg,var(--panel),#0A0C0E);
+  transition:border-color .45s var(--ease),transform .45s var(--ease);
+}
+.ip__card::before{
+  content:'';position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .5s;
+  background:radial-gradient(520px circle at var(--cx,50%) var(--cy,50%),var(--signal-08),transparent 60%);
+}
+.ip__card:hover{border-color:var(--signal-32);transform:translateY(-3px)}
+.ip__card:hover::before{opacity:1}
+.ip__bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:11px 18px;border-bottom:1px solid var(--line);background:rgba(255,182,39,.03)}
+.ip__kind{display:flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal)}
+.ip__kind .ico{font-size:14px}
+.ip__id{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;color:var(--ink-3)}
+.ip__body{padding:clamp(20px,2.6vw,32px)}
+.ip__ttl{
+  font-family:var(--f-display);font-variation-settings:'wdth' 104,'wght' 700;
+  font-size:clamp(19px,2.3vw,29px);line-height:1.16;letter-spacing:-.025em;margin-bottom:11px;
+}
+.ip__meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:15px;font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.ip__meta b{color:var(--ink-2);font-weight:400}
+.ip__txt{color:var(--ink-2);font-size:14.5px;max-width:78ch;margin-bottom:18px}
+.link{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:10.5px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--signal);
+  border-bottom:1px solid var(--signal-32);padding-bottom:3px;transition:border-color .3s,gap .3s var(--ease);
+}
+.link .ico{font-size:13px}
+.link:hover{border-color:var(--signal);gap:12px}
+
+/* ============ projects ============ */
+.proj{
+  position:relative;display:block;border-bottom:1px solid var(--line);padding:clamp(22px,2.6vw,32px) 0;
+  overflow:hidden;isolation:isolate;
+}
+.proj:first-child{border-top:1px solid var(--line)}
+.proj::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,var(--signal-08),transparent 55%);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease-out);
+}
+.proj:hover::before{transform:scaleX(1)}
+.proj__row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(14px,2vw,28px);align-items:start;transition:transform .5s var(--ease)}
+.proj:hover .proj__row{transform:translateX(clamp(6px,1vw,16px))}
+.proj__n{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--ink-3);padding-top:8px;transition:color .4s}
+.proj:hover .proj__n{color:var(--signal)}
+.proj__ttl{
+  font-family:var(--f-display);font-variation-settings:'wdth' 108,'wght' 700;
+  font-size:clamp(20px,2.9vw,36px);line-height:1.1;letter-spacing:-.03em;margin-bottom:8px;transition:color .4s;
+}
+.proj:hover .proj__ttl{color:var(--signal)}
+.proj__repo{
+  display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;
+  letter-spacing:.06em;color:var(--ink-3);margin-bottom:11px;transition:color .4s;word-break:break-all;text-transform:none;
+}
+.proj__repo .ico{font-size:12px;flex:none}
+.proj:hover .proj__repo{color:var(--ink-2)}
+.proj__txt{color:var(--ink-2);font-size:14px;max-width:64ch;margin-bottom:13px}
+.proj__arrow{
+  width:40px;height:40px;flex:none;display:grid;place-content:center;border-radius:50%;
+  border:1px solid var(--line-2);color:var(--ink-3);margin-top:6px;
+  transition:transform .45s var(--ease),border-color .4s,color .4s,background .4s,box-shadow .4s;
+}
+.proj__arrow .ico{font-size:15px}
+.proj:hover .proj__arrow{transform:rotate(45deg);border-color:var(--signal);color:var(--signal);background:var(--signal-08);box-shadow:0 0 26px -6px var(--signal)}
+.linked{
+  display:inline-flex;align-items:center;gap:7px;margin-top:2px;
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--signal);border:1px solid var(--signal-32);border-radius:100px;padding:3.5px 10px;background:var(--signal-08);
+}
+.linked .ico{font-size:11px}
+
+/* ============ certs ============ */
+.cert__head{display:flex;align-items:flex-start;gap:13px;margin-bottom:15px}
+.cert__ttl{font-family:var(--f-display);font-variation-settings:'wdth' 102,'wght' 640;font-size:17px;line-height:1.24;letter-spacing:-.018em;transition:color .35s;padding-right:34px}
+.card:hover .cert__ttl{color:var(--signal)}
+.cert__meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px}
+.cert__meta b{color:var(--ink-2);font-weight:400}
+
+/* ============ education ============ */
+.edu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.edu__ttl{font-family:var(--f-display);font-variation-settings:'wdth' 104,'wght' 680;font-size:clamp(18px,1.9vw,23px);line-height:1.2;letter-spacing:-.022em;margin-bottom:7px;transition:color .35s}
+.card:hover .edu__ttl{color:var(--signal)}
+.edu__sub{color:var(--ink-2);font-size:14px;margin-bottom:12px}
+
+/* ============ contact ============ */
+.contact{text-align:center;padding-block:clamp(78px,11vw,140px)}
+.contact__h{
+  font-family:var(--f-display);font-variation-settings:'wdth' 118,'wght' 800;
+  font-size:clamp(38px,9.4vw,124px);line-height:.88;letter-spacing:-.045em;text-transform:uppercase;
+  margin-bottom:22px;
+}
+.contact__h span{
+  background:linear-gradient(96deg,var(--ink) 18%,var(--signal) 92%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.contact .lead{margin:0 auto 32px;text-align:center}
+.contact__cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+/* ============ footer ============ */
+.foot{border-top:1px solid var(--line);padding:26px var(--gut);position:relative;z-index:2}
+.foot__in{max-width:var(--maxw);margin-inline:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.foot__c{font-family:var(--f-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.foot__s{display:flex;gap:8px}
+.foot__s a{
+  width:36px;height:36px;display:grid;place-content:center;border-radius:9px;
+  border:1px solid var(--line);color:var(--ink-3);
+  transition:color .35s,border-color .35s,transform .35s var(--ease),background .35s,box-shadow .4s;
+}
+.foot__s a .ico{font-size:15px}
+.foot__s a:hover{color:var(--signal);border-color:var(--signal-32);transform:translateY(-3px);background:var(--panel);box-shadow:0 0 24px -8px var(--signal)}
+
+/* ============ reveal ============ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.07s}
+.rv[data-d="2"]{transition-delay:.14s}
+.rv[data-d="3"]{transition-delay:.21s}
+.rv[data-d="4"]{transition-delay:.28s}
+
+/* ============ responsive ============ */
+@media(max-width:980px){
+  .hero__grid{grid-template-columns:1fr;gap:32px}
+  .portrait{max-width:240px;margin-inline:auto}
+  .about{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .nav__links{display:none}
+  .burger{display:grid}
+  .rail{grid-template-columns:repeat(2,1fr)}
+  .rail__cell:nth-child(2){border-right:0}
+  .rail__cell:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .grid-2,.edu{grid-template-columns:1fr}
+  .proj__row{grid-template-columns:auto minmax(0,1fr);gap:14px}
+  .proj__arrow{display:none}
+}
+@media(max-width:560px){
+  .hero__name{font-size:clamp(42px,13.4vw,72px)}
+  .job__top{gap:6px}
+  .figure__legend{display:none}
+  .fact{flex-direction:column;gap:3px}
+  .fact__v{text-align:left}
+  .foot__in{justify-content:center;text-align:center}
+}
+
+/* ============ a11y: reduced motion ============ */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+  .hero__name .ln>span{transform:none}
+  .grain{animation:none}
+}
+</style>
+</head>
+<body>
+<!-- ===== icon sprite (Lucide geometry, inlined — no CDN, no emoji) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24"><path d="m15.48 12.89 1.51 8.53a.5.5 0 0 1-.81.47l-3.58-2.69a1 1 0 0 0-1.2 0l-3.58 2.69a.5.5 0 0 1-.81-.47l1.51-8.53"/><circle cx="12" cy="8" r="6"/></symbol>
+<symbol id="i-paper" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+<symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-verified" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><path d="M8 12h8"/></symbol>
+<symbol id="i-branch" viewBox="0 0 24 24"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M20 15h2M20 9h2M2 15h2M2 9h2"/></symbol>
+</defs></svg>
+
+<div class="grain"></div>
+<div class="spot"></div>
+<div class="vignette"></div>
+
+<!-- ===== boot ===== -->
+<div class="boot" id="boot">
+  <div class="boot__id">Sujeet Gaikwad</div>
+  <div class="boot__bar"><div class="boot__fill" id="bootFill"></div></div>
+  <div class="boot__num" id="bootNum">000</div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<!-- ===== nav ===== -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Sujeet Gaikwad — home">
+    <img class="brand__mark" src="sujeet.jpg" alt="Sujeet Gaikwad" width="32" height="32">
+    <span class="brand__txt">Sujeet Gaikwad</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a class="nav__link" href="#about">About</a>
+    <a class="nav__link" href="#work">Experience</a>
+    <a class="nav__link" href="#research">Research</a>
+    <a class="nav__link" href="#projects">Projects</a>
+    <a class="nav__link" href="#certs">Credentials</a>
+    <a class="nav__link" href="#contact">Contact</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="sheet" id="sheet">
+  <a href="#about"><i>01</i>About</a>
+  <a href="#work"><i>02</i>Experience</a>
+  <a href="#research"><i>03</i>Research</a>
+  <a href="#projects"><i>04</i>Projects</a>
+  <a href="#certs"><i>05</i>Credentials</a>
+  <a href="#education"><i>06</i>Education</a>
+  <a href="#contact"><i>07</i>Contact</a>
+</div>
+
+<main>
+<!-- ===== hero ===== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero__grid">
+      <div>
+        <div class="hero__status"><span class="pulse"></span> Pune, India — open to AI/ML roles</div>
+        <h1 class="hero__name">
+          <span class="ln"><span>Sujeet</span></span>
+          <span class="ln"><span class="grad">Gaikwad</span></span>
+        </h1>
+        <p class="hero__role rv" data-d="1">
+          <b>AI Engineer</b> working on generative AI, agentic systems and reinforcement learning.
+          Currently <u>Associate Consultant at EY</u>. Previously an AI research intern at
+          <u>DRDO</u>, where I taught a humanoid robot to walk.
+        </p>
+        <div class="hero__cta rv" data-d="2">
+          <a class="btn btn--solid" href="#projects">
+            <svg class="ico"><use href="#i-branch"/></svg> See the work
+          </a>
+          <a class="btn" href="mailto:Sujeetsg1372@gmail.com">
+            <svg class="ico"><use href="#i-mail"/></svg> Get in touch
+          </a>
+        </div>
+      </div>
+
+      <div class="portrait rv" data-d="3">
+        <i class="portrait__cnr"></i><i class="portrait__cnr"></i>
+        <div class="portrait__scan"></div>
+        <img src="sujeet.jpg" alt="Portrait of Sujeet Gaikwad" width="800" height="1000" fetchpriority="high">
+        <div class="portrait__tag">Sujeet Gaikwad <b>/ AI Engineer</b></div>
+      </div>
+    </div>
+
+    <!-- === SIGNATURE: FIG.1 === -->
+    <figure class="figure rv" data-d="2">
+      <div class="figure__head">
+        <div class="figure__ttl">Fig. 1 — <b>PPO reward curve</b> · humanoid biped locomotion</div>
+        <div class="figure__legend">
+          <i>raw episode return</i>
+          <i class="hi">smoothed (window 20)</i>
+        </div>
+      </div>
+      <div class="figure__body">
+        <div class="figure__y">episode_reward &#8594;</div>
+        <div class="figure__x">timesteps &#8594;</div>
+        <canvas id="fig1" aria-label="A reinforcement learning training curve: episode reward rising and converging as timesteps increase" role="img"></canvas>
+      </div>
+      <figcaption class="figure__cap">
+        Representative training trace from my DRDO work (2024): a PPO policy learning bipedal gait in MuJoCo — noisy and unstable early, converging as the reward function stops lying. Illustrative shape, not logged data.
+      </figcaption>
+    </figure>
+
+    <!-- === telemetry rail === -->
+    <div class="rail rv" data-d="3">
+      <div class="rail__cell"><div class="rail__n" data-count="2" data-suffix="+">0</div><div class="rail__l">Years in industry</div></div>
+      <div class="rail__cell"><div class="rail__n" data-count="1" data-pad="2">0</div><div class="rail__l">Patent granted</div></div>
+      <div class="rail__cell"><div class="rail__n" data-count="1" data-pad="2">0</div><div class="rail__l">IEEE publication</div></div>
+      <div class="rail__cell"><div class="rail__n" data-count="17" data-pad="2">0</div><div class="rail__l">Public repositories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ticker ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="ticker"></div>
+</div>
+
+<!-- ===== about ===== -->
+<section class="sec sec--flush" id="about">
+  <div class="wrap">
+    <div class="eyebrow rv">About <span>/ 01</span><i></i></div>
+    <div class="about">
+      <div>
+        <h2 class="h2 rv" data-d="1">The part of AI that <em>isn't</em> the model.</h2>
+        <div class="rv" data-d="2">
+          <p class="about__drop">I'm an AI engineer, currently an Associate Consultant at <b>EY</b> in Pune, building AI automation, LLM pipelines and agentic systems on Python and Azure. Around two years in the industry so far — most of it spent on the unfashionable half of applied AI: retrieval, evaluation, orchestration, and backends that stay standing when the model gets it wrong.</p>
+          <p>Before consulting I was an AI research intern at <b>DRDO</b>, teaching a humanoid robot to walk. Not metaphorically — a PPO policy in MuJoCo learning bipedal gait, stair ascent and descent, and curved paths from a reward function I spent months arguing with. It's still the clearest lesson I have about ML: <b>the reward is the spec, and the spec is wrong the first time.</b></p>
+          <p>Since then the work has moved toward generative AI and agentic systems, but the instinct hasn't changed — build it, measure it honestly, keep the loop tight. Along the way I picked up a <a class="u" href="#research">granted patent</a> on real-time sentiment analysis and sentiment reversal for political news, and an <a class="u" href="#research">IEEE paper</a> on ML for stock market trend prediction. Right now I'm most interested in agents that plan, call tools, and recover when a step fails.</p>
+        </div>
+      </div>
+      <div class="facts rv" data-d="3">
+        <div class="fact"><span class="fact__k">Based in</span><span class="fact__v">Pune, Maharashtra, India</span></div>
+        <div class="fact"><span class="fact__k">Current</span><span class="fact__v">Associate Consultant <em>@ EY</em></span></div>
+        <div class="fact"><span class="fact__k">Experience</span><span class="fact__v">~2 years</span></div>
+        <div class="fact"><span class="fact__k">Focus</span><span class="fact__v">Generative AI · Agentic systems · ML</span></div>
+        <div class="fact"><span class="fact__k">Core stack</span><span class="fact__v">Python · Azure · PyTorch · LLMs</span></div>
+        <div class="fact"><span class="fact__k">Degree</span><span class="fact__v">B.Tech, AI &amp; Data Science</span></div>
+        <div class="fact"><span class="fact__k">Status</span><span class="fact__v"><em>Open to conversations</em></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== experience ===== -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="eyebrow rv">Experience <span>/ 02</span><i></i></div>
+    <h2 class="h2 rv" data-d="1">Research bench to <em>enterprise floor</em>.</h2>
+    <p class="lead rv" data-d="2" style="margin-bottom:clamp(30px,3.6vw,52px)">Three roles, one throughline: make the model useful to someone who doesn't care that it's a model.</p>
+
+    <div class="tl rv" data-d="2">
+      <div class="tl__line" id="tlLine"></div>
+
+      <article class="job now">
+        <span class="job__dot"></span>
+        <div class="job__top">
+          <h3 class="job__ttl">Associate Consultant</h3>
+          <span class="job__date">May 2026 — Present</span>
+        </div>
+        <div class="job__org">
+          <span class="job__logo">EY</span>
+          <span><b>EY</b> <i>· Full-time · Pune Division, Maharashtra, India · On-site</i></span>
+          <span class="badge-now">Now</span>
+        </div>
+        <p class="job__desc">Building AI automation, LLM pipelines and agentic systems for enterprise clients — Python and Azure underneath, with the backend engineering that makes any of it deployable.</p>
+        <div class="chips">
+          <span class="chip">Agentic AI</span><span class="chip">LLM Systems</span><span class="chip">AI Automation</span>
+          <span class="chip">Python</span><span class="chip">Azure</span><span class="chip">Backend Engineering</span>
+        </div>
+      </article>
+
+      <article class="job">
+        <span class="job__dot"></span>
+        <div class="job__top">
+          <h3 class="job__ttl">Software Engineer</h3>
+          <span class="job__date">Aug 2024 — Mar 2026 · 1 yr 8 mos</span>
+        </div>
+        <div class="job__org">
+          <span class="job__logo">HTS</span>
+          <span><b>HTS</b> <i>· Full-time · Pune District, Maharashtra, India · On-site</i></span>
+        </div>
+        <p class="job__desc">First full-time role. Data analysis and data science work end to end — framing the question, building the model, and shipping the pipeline that keeps it fed.</p>
+        <div class="chips">
+          <span class="chip">Data Analysis</span><span class="chip">Data Science</span><span class="chip">Machine Learning</span>
+          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Backend</span>
+        </div>
+      </article>
+
+      <article class="job">
+        <span class="job__dot"></span>
+        <div class="job__top">
+          <h3 class="job__ttl">Project Intern — AI Research</h3>
+          <span class="job__date">Mar 2024 — Sep 2024 · 7 mos</span>
+        </div>
+        <div class="job__org">
+          <span class="job__logo">DRDO</span>
+          <span><b>Defence Research and Development Organisation (DRDO)</b> <i>· Internship · Hybrid</i></span>
+        </div>
+        <p class="job__desc">Deep reinforcement learning for humanoid locomotion. Trained PPO policies in MuJoCo to walk a bipedal robot across flat ground, footstep targets, ascending and descending stairs, and curved paths — reward shaping, distributed rollouts, and a lot of failed runs.</p>
+        <div class="chips">
+          <span class="chip">Deep Reinforcement Learning</span><span class="chip">PPO</span><span class="chip">MuJoCo</span>
+          <span class="chip">PyTorch</span><span class="chip">Ray</span><span class="chip">Robotics</span><span class="chip">Python</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== research & IP ===== -->
+<section class="sec" id="research">
+  <div class="wrap">
+    <div class="eyebrow rv">Research &amp; IP <span>/ 03</span><i></i></div>
+    <h2 class="h2 rv" data-d="1">One patent. One <em>IEEE paper</em>.</h2>
+    <p class="lead rv" data-d="2" style="margin-bottom:clamp(30px,3.6vw,52px)">Both started as code in the projects below, then survived review.</p>
+
+    <div class="ip">
+      <article class="ip__card rv" data-d="2">
+        <div class="ip__bar">
+          <div class="ip__kind"><svg class="ico"><use href="#i-award"/></svg> Patent · Granted</div>
+          <div class="ip__id">2025/05214</div>
+        </div>
+        <div class="ip__body">
+          <h3 class="ip__ttl">An Integrated System for Real-Time Sentiment Analysis and Sentiment Reversal of Political News Articles</h3>
+          <div class="ip__meta">
+            <span>Issued <b>Mar 25, 2026</b></span><span>Role <b>Co-inventor</b></span><span>App. no. <b>2025/05214</b></span>
+          </div>
+          <p class="ip__txt">Co-invented an AI-driven system for real-time sentiment analysis and sentiment reversal of political news articles using machine learning, NLP and generative AI. The system reads political news content, detects sentiment patterns, and generates sentiment-reversal insights for media intelligence and analytics.</p>
+          <a class="link" href="https://github.com/Sujgaik2003/Political_News_-_Counter-Strategies" target="_blank" rel="noopener">Reference implementation <svg class="ico"><use href="#i-ext"/></svg></a>
+        </div>
+      </article>
+
+      <article class="ip__card rv" data-d="3">
+        <div class="ip__bar">
+          <div class="ip__kind"><svg class="ico"><use href="#i-paper"/></svg> Publication · IEEE</div>
+          <div class="ip__id">IEEE Xplore · 10503557</div>
+        </div>
+        <div class="ip__body">
+          <h3 class="ip__ttl">Predictive Analysis of Stock Market Trends: A Machine Learning Approach</h3>
+          <div class="ip__meta">
+            <span>2024 4th Intl. Conference on <b>Data Engineering and Communication Systems (ICDECS)</b></span>
+            <span>Bangalore, India</span><span>Published <b>Apr 23, 2024</b></span>
+          </div>
+          <p class="ip__txt">Machine learning approaches to forecasting stock market trends, presented at ICDECS 2024. The accompanying implementation uses LSTM networks over historical price series.</p>
+          <a class="link" href="https://ieeexplore.ieee.org/document/10503557" target="_blank" rel="noopener">Read on IEEE Xplore <svg class="ico"><use href="#i-ext"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== projects ===== -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="eyebrow rv">Selected Projects <span>/ 04</span><i></i></div>
+    <h2 class="h2 rv" data-d="1">Code, not <em>screenshots</em>.</h2>
+    <p class="lead rv" data-d="2" style="margin-bottom:clamp(28px,3.4vw,46px)">Four of seventeen public repositories. Two of them became a patent and a paper.</p>
+
+    <div class="rv" data-d="2">
+      <a class="proj" href="https://github.com/Sujgaik2003/Nao-robot-pideal-walking-using-RL-" target="_blank" rel="noopener">
+        <div class="proj__row">
+          <span class="proj__n">01</span>
+          <div>
+            <h3 class="proj__ttl">Humanoid Biped Locomotion with Deep RL</h3>
+            <span class="proj__repo"><svg class="ico"><use href="#i-github"/></svg>Sujgaik2003/Nao-robot-pideal-walking-using-RL-</span>
+            <p class="proj__txt">PPO policies trained in MuJoCo to walk a humanoid across flat ground and footstep targets, up and down stairs, and around curves. Custom environments and reward shaping, actor–critic networks in PyTorch, distributed rollouts with Ray.</p>
+            <div class="chips">
+              <span class="chip">PyTorch</span><span class="chip">MuJoCo</span><span class="chip">PPO</span>
+              <span class="chip">Ray</span><span class="chip">Python</span><span class="chip">DRDO</span>
+            </div>
+          </div>
+          <span class="proj__arrow"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </div>
+      </a>
+
+      <a class="proj" href="https://github.com/Sujgaik2003/Political_News_-_Counter-Strategies" target="_blank" rel="noopener">
+        <div class="proj__row">
+          <span class="proj__n">02</span>
+          <div>
+            <h3 class="proj__ttl">Political News Sentiment &amp; Counter-Strategy Engine</h3>
+            <span class="proj__repo"><svg class="ico"><use href="#i-github"/></svg>Sujgaik2003/Political_News_-_Counter-Strategies</span>
+            <p class="proj__txt">A Streamlit app that pulls articles from an RSS feed, scores sentiment with TextBlob and VADER, and generates counter-articles with GPT-3.5. This is the work the patent came out of.</p>
+            <div class="chips">
+              <span class="chip">Streamlit</span><span class="chip">NLP</span><span class="chip">VADER</span>
+              <span class="chip">TextBlob</span><span class="chip">GPT-3.5</span><span class="chip">Python</span>
+            </div>
+            <span class="linked"><svg class="ico"><use href="#i-link"/></svg>Patent 2025/05214</span>
+          </div>
+          <span class="proj__arrow"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </div>
+      </a>
+
+      <a class="proj" href="https://github.com/Sujgaik2003/RAG-Systm-using-Llama2-and-LammaIndex-" target="_blank" rel="noopener">
+        <div class="proj__row">
+          <span class="proj__n">03</span>
+          <div>
+            <h3 class="proj__ttl">RAG System with Llama 2 + LlamaIndex</h3>
+            <span class="proj__repo"><svg class="ico"><use href="#i-github"/></svg>Sujgaik2003/RAG-Systm-using-Llama2-and-LammaIndex-</span>
+            <p class="proj__txt">Retrieval-augmented generation over a local document set — chunking, indexing and querying with LlamaIndex, answers grounded by Llama 2. The starting point for the retrieval work I do now.</p>
+            <div class="chips">
+              <span class="chip">LlamaIndex</span><span class="chip">Llama 2</span><span class="chip">RAG</span>
+              <span class="chip">Embeddings</span><span class="chip">Jupyter</span>
+            </div>
+          </div>
+          <span class="proj__arrow"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </div>
+      </a>
+
+      <a class="proj" href="https://github.com/Sujgaik2003/Stock-Market" target="_blank" rel="noopener">
+        <div class="proj__row">
+          <span class="proj__n">04</span>
+          <div>
+            <h3 class="proj__ttl">Stock Market Trend Prediction</h3>
+            <span class="proj__repo"><svg class="ico"><use href="#i-github"/></svg>Sujgaik2003/Stock-Market</span>
+            <p class="proj__txt">LSTM networks over historical price series to forecast market trends — the implementation behind the ICDECS 2024 paper.</p>
+            <div class="chips">
+              <span class="chip">LSTM</span><span class="chip">Deep Learning</span><span class="chip">Time Series</span>
+              <span class="chip">Pandas</span><span class="chip">Jupyter</span>
+            </div>
+            <span class="linked"><svg class="ico"><use href="#i-link"/></svg>IEEE 10503557</span>
+          </div>
+          <span class="proj__arrow"><svg class="ico"><use href="#i-arrow"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="rv" data-d="2" style="margin-top:30px">
+      <a class="btn" href="https://github.com/Sujgaik2003?tab=repositories" target="_blank" rel="noopener">
+        <svg class="ico"><use href="#i-github"/></svg> All 17 repositories
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== certifications ===== -->
+<section class="sec" id="certs">
+  <div class="wrap">
+    <div class="eyebrow rv">Credentials <span>/ 05</span><i></i></div>
+    <h2 class="h2 rv" data-d="1">Every one <em>verifiable</em>.</h2>
+    <p class="lead rv" data-d="2" style="margin-bottom:clamp(28px,3.4vw,46px)">Four certifications, each linked to its issuer's verification page. No screenshots of certificates — just the receipts.</p>
+
+    <div class="grid-2">
+      <a class="card rv" data-d="1" href="https://www.coursera.org/account/accomplishments/verify/SAZLJGF93JWF" target="_blank" rel="noopener">
+        <span class="card__idx">C-01</span>
+        <div class="cert__head">
+          <span class="job__logo">IBM</span>
+          <h3 class="cert__ttl">Continuous Integration and Continuous Delivery (CI/CD)</h3>
+        </div>
+        <div class="cert__meta"><span>Issuer <b>IBM</b></span><span>Issued <b>Nov 2024</b></span><span>ID <b>SAZLJGF93JWF</b></span></div>
+        <span class="link">Verify credential <svg class="ico"><use href="#i-verified"/></svg></span>
+      </a>
+
+      <a class="card rv" data-d="2" href="https://www.coursera.org/account/accomplishments/verify/04VRBVHNHUZC" target="_blank" rel="noopener">
+        <span class="card__idx">C-02</span>
+        <div class="cert__head">
+          <span class="job__logo">DL.AI</span>
+          <h3 class="cert__ttl">Generative AI with Large Language Models</h3>
+        </div>
+        <div class="cert__meta"><span>Issuer <b>DeepLearning.AI</b></span><span>Issued <b>Oct 2024</b></span><span>ID <b>04VRBVHNHUZC</b></span></div>
+        <span class="link">Verify credential <svg class="ico"><use href="#i-verified"/></svg></span>
+      </a>
+
+      <a class="card rv" data-d="3" href="https://www.coursera.org/account/accomplishments/verify/OWMAQ0L9KIF9" target="_blank" rel="noopener">
+        <span class="card__idx">C-03</span>
+        <div class="cert__head">
+          <span class="job__logo">IBM</span>
+          <h3 class="cert__ttl">Application Security for Developers and DevOps Professionals</h3>
+        </div>
+        <div class="cert__meta"><span>Issuer <b>IBM</b></span><span>Issued <b>Nov 2024</b></span><span>ID <b>OWMAQ0L9KIF9</b></span></div>
+        <span class="link">Verify credential <svg class="ico"><use href="#i-verified"/></svg></span>
+      </a>
+
+      <a class="card rv" data-d="4" href="https://www.coursera.org/account/accomplishments/verify/8QB7LKQ73H31" target="_blank" rel="noopener">
+        <span class="card__idx">C-04</span>
+        <div class="cert__head">
+          <span class="job__logo">IBM</span>
+          <h3 class="cert__ttl">Python for Data Science, AI &amp; Development</h3>
+        </div>
+        <div class="cert__meta"><span>Issuer <b>IBM</b></span><span>Issued <b>Nov 2024</b></span><span>ID <b>8QB7LKQ73H31</b></span></div>
+        <span class="link">Verify credential <svg class="ico"><use href="#i-verified"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== education ===== -->
+<section class="sec" id="education">
+  <div class="wrap">
+    <div class="eyebrow rv">Education <span>/ 06</span><i></i></div>
+    <h2 class="h2 rv" data-d="1">Where it <em>started</em>.</h2>
+    <div class="edu" style="margin-top:clamp(28px,3.4vw,46px)">
+      <div class="card rv" data-d="1">
+        <span class="card__idx"><svg class="ico" style="font-size:15px"><use href="#i-cap"/></svg></span>
+        <div class="cert__head">
+          <span class="job__logo">VIIT</span>
+          <div>
+            <h3 class="edu__ttl">Vishwakarma Institute of Information Technology</h3>
+            <p class="edu__sub">Bachelor of Technology (B.Tech) — Artificial Intelligence and Data Science</p>
+          </div>
+        </div>
+        <div class="cert__meta" style="margin-bottom:0"><span>Jan 2022 — Oct 2025</span><span>Pune, India</span></div>
+      </div>
+      <div class="card rv" data-d="2">
+        <span class="card__idx"><svg class="ico" style="font-size:15px"><use href="#i-shield"/></svg></span>
+        <div class="cert__head">
+          <span class="job__logo">APS</span>
+          <div>
+            <h3 class="edu__ttl">Army Public School (APS)</h3>
+            <p class="edu__sub">High school</p>
+          </div>
+        </div>
+        <div class="cert__meta" style="margin-bottom:0"><span>Mar 2020 — May 2021</span><span>Truth is God</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== contact ===== -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow rv" style="justify-content:center">Contact <span>/ 07</span></div>
+    <h2 class="contact__h rv" data-d="1">Let's build<br><span>something</span></h2>
+    <p class="lead rv" data-d="2">I'm always up for a conversation about applied AI — agentic systems, LLM pipelines, or the reinforcement learning problem you can't get to converge.</p>
+    <div class="contact__cta rv" data-d="3">
+      <a class="btn btn--solid" href="mailto:Sujeetsg1372@gmail.com"><svg class="ico"><use href="#i-mail"/></svg> Sujeetsg1372@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/sujeet-gaikwad03" target="_blank" rel="noopener"><svg class="ico"><use href="#i-linkedin"/></svg> LinkedIn</a>
+      <a class="btn" href="https://github.com/Sujgaik2003" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg> GitHub</a>
+      <a class="btn" href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&amp;utm_medium=copy_link&amp;utm_content=tfuv62p" target="_blank" rel="noopener"><svg class="ico"><use href="#i-instagram"/></svg> Instagram</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <span class="foot__c">&copy; <span id="yr">2026</span> Sujeet Gaikwad — built in Pune</span>
+    <div class="foot__s">
+      <a href="https://github.com/Sujgaik2003" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico"><use href="#i-github"/></svg></a>
+      <a href="https://www.linkedin.com/in/sujeet-gaikwad03" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico"><use href="#i-linkedin"/></svg></a>
+      <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&amp;utm_medium=copy_link&amp;utm_content=tfuv62p" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ico"><use href="#i-instagram"/></svg></a>
+      <a href="mailto:Sujeetsg1372@gmail.com" aria-label="Email"><svg class="ico"><use href="#i-mail"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+'use strict';
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------------------------------------------------------------
+   1. TICKER — real stack, pulled from the repos and the CV
+--------------------------------------------------------------- */
+const STACK = ['Python','PyTorch','TensorFlow','Azure','LLM Systems','Agentic AI','RAG','LlamaIndex',
+  'MuJoCo','PPO','Reinforcement Learning','scikit-learn','Pandas','NumPy','Docker','Flask','Django',
+  'OpenCV','Streamlit','MySQL','Linux','AWS','MLOps','Generative AI'];
+const track = $('#ticker');
+if (track) {
+  const set = () => {
+    const d = document.createElement('div');
+    d.className = 'ticker__set';
+    d.innerHTML = STACK.map(s => `<span class="ticker__item">${s}</span>`).join('');
+    return d;
+  };
+  track.append(set(), set());
+}
+
+/* ---------------------------------------------------------------
+   2. FIG.1 — the signature.
+   A PPO episode-reward trace: unstable early, converging late.
+   NOTE: this is a *representative* curve, not logged data.
+   To use your real run, replace RAW below with your reward array.
+--------------------------------------------------------------- */
+const fig = $('#fig1');
+if (fig) {
+  const ctx = fig.getContext('2d');
+  const N = 340;
+
+  // deterministic PRNG so the curve is identical on every load
+  const mulberry32 = a => () => {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+  const rnd = mulberry32(20240923);
+
+  const RAW = [];
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1);
+    const learn = 1 - Math.exp(-3.4 * t);                       // the learning curve
+    const noise = (rnd() * 2 - 1) * (0.34 * Math.exp(-2.4 * t) + 0.026); // shrinking variance
+    const bump  = (c, s) => Math.exp(-(((t - c) / s) ** 2));
+    const dip   = -0.21 * bump(0.145, 0.034)   // policy collapse
+                  - 0.13 * bump(0.315, 0.028); // and again
+    RAW.push(clamp(learn * 0.87 + 0.06 + noise + dip, 0.02, 1));
+  }
+  // moving average, window 20 — the line you actually report
+  const W = 20, SMOOTH = RAW.map((_, i) => {
+    const a = Math.max(0, i - W + 1);
+    let s = 0; for (let j = a; j <= i; j++) s += RAW[j];
+    return s / (i - a + 1);
+  });
+
+  let w = 0, h = 0, prog = 0, raf = 0, live = false, t0 = 0;
+  const PAD = { l: 26, r: 14, t: 16, b: 22 };
+  const X = i => PAD.l + (i / (N - 1)) * (w - PAD.l - PAD.r);
+  const Y = v => h - PAD.b - v * (h - PAD.t - PAD.b);
+
+  const size = () => {
+    const r = fig.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    w = r.width; h = r.height;
+    fig.width = w * dpr; fig.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  const draw = () => {
+    ctx.clearRect(0, 0, w, h);
+    const n = Math.max(2, Math.floor(prog * N));
+
+    // grid
+    ctx.strokeStyle = '#1D2126'; ctx.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const y = PAD.t + i * (h - PAD.t - PAD.b) / 4;
+      ctx.beginPath(); ctx.moveTo(PAD.l, y); ctx.lineTo(w - PAD.r, y); ctx.stroke();
+    }
+    for (let i = 0; i <= 6; i++) {
+      const x = PAD.l + i * (w - PAD.l - PAD.r) / 6;
+      ctx.beginPath(); ctx.moveTo(x, PAD.t); ctx.lineTo(x, h - PAD.b); ctx.stroke();
+    }
+    // asymptote
+    ctx.save(); ctx.setLineDash([3, 5]); ctx.strokeStyle = 'rgba(255,182,39,.2)';
+    ctx.beginPath(); ctx.moveTo(PAD.l, Y(0.905)); ctx.lineTo(w - PAD.r, Y(0.905)); ctx.stroke(); ctx.restore();
+
+    // area under the smoothed line
+    const g = ctx.createLinearGradient(0, PAD.t, 0, h - PAD.b);
+    g.addColorStop(0, 'rgba(255,182,39,.16)'); g.addColorStop(1, 'rgba(255,182,39,0)');
+    ctx.beginPath(); ctx.moveTo(X(0), h - PAD.b);
+    for (let i = 0; i < n; i++) ctx.lineTo(X(i), Y(SMOOTH[i]));
+    ctx.lineTo(X(n - 1), h - PAD.b); ctx.closePath();
+    ctx.fillStyle = g; ctx.fill();
+
+    // raw episode return
+    ctx.beginPath(); ctx.moveTo(X(0), Y(RAW[0]));
+    for (let i = 1; i < n; i++) ctx.lineTo(X(i), Y(RAW[i]));
+    ctx.strokeStyle = 'rgba(255,182,39,.3)'; ctx.lineWidth = 1; ctx.stroke();
+
+    // smoothed line — the glowing one
+    ctx.save();
+    ctx.shadowColor = 'rgba(255,182,39,.85)'; ctx.shadowBlur = 13;
+    ctx.beginPath(); ctx.moveTo(X(0), Y(SMOOTH[0]));
+    for (let i = 1; i < n; i++) ctx.lineTo(X(i), Y(SMOOTH[i]));
+    ctx.strokeStyle = '#FFB627'; ctx.lineWidth = 2;
+    ctx.lineJoin = ctx.lineCap = 'round'; ctx.stroke();
+    ctx.restore();
+
+    // leading marker
+    const px = X(n - 1), py = Y(SMOOTH[n - 1]);
+    const pr = RM ? 3 : 3 + Math.sin(performance.now() / 460) * 1.1;
+    ctx.save();
+    ctx.shadowColor = '#FFB627'; ctx.shadowBlur = 16;
+    ctx.beginPath(); ctx.arc(px, py, pr, 0, 7); ctx.fillStyle = '#FFD98A'; ctx.fill();
+    ctx.restore();
+    ctx.beginPath(); ctx.arc(px, py, pr + 5, 0, 7);
+    ctx.strokeStyle = 'rgba(255,182,39,.28)'; ctx.lineWidth = 1; ctx.stroke();
+  };
+
+  const loop = ts => {
+    if (!t0) t0 = ts;
+    const e = clamp((ts - t0) / 2300, 0, 1);
+    prog = 1 - Math.pow(1 - e, 3);            // easeOutCubic
+    draw();
+    if (live) raf = requestAnimationFrame(loop);
+  };
+
+  size();
+  if (RM) { prog = 1; draw(); }
+  else {
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting && !live) { live = true; raf = requestAnimationFrame(loop); }
+      else if (!e.isIntersecting && live) { live = false; cancelAnimationFrame(raf); }
+    }), { threshold: 0.05 }).observe(fig);
+  }
+  let rt; addEventListener('resize', () => {
+    clearTimeout(rt); rt = setTimeout(() => { size(); draw(); }, 140);
+  }, { passive: true });
+}
+
+/* ---------------------------------------------------------------
+   3. BOOT SEQUENCE
+--------------------------------------------------------------- */
+const boot = $('#boot'), fill = $('#bootFill'), num = $('#bootNum');
+const start = () => {
+  document.body.classList.add('ready');
+  observeReveals();
+};
+if (RM) { boot.remove(); start(); }
+else {
+  let p = 0;
+  const tick = setInterval(() => {
+    p = Math.min(100, p + Math.random() * 16 + 5);
+    fill.style.width = p + '%';
+    num.textContent = String(Math.floor(p)).padStart(3, '0');
+    if (p >= 100) {
+      clearInterval(tick);
+      setTimeout(() => { boot.classList.add('done'); start(); }, 210);
+      setTimeout(() => boot.remove(), 1500);
+    }
+  }, 105);
+}
+
+/* ---------------------------------------------------------------
+   4. SCROLL REVEALS
+--------------------------------------------------------------- */
+let revealsOn = false;
+function observeReveals() {
+  if (revealsOn) return; revealsOn = true;
+  if (RM) { $$('.rv').forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+  $$('.rv').forEach(el => io.observe(el));
+}
+
+/* ---------------------------------------------------------------
+   5. COUNTERS
+--------------------------------------------------------------- */
+$$('[data-count]').forEach(el => {
+  const target = +el.dataset.count, pad = +(el.dataset.pad || 0), sfx = el.dataset.suffix || '';
+  const put = v => {
+    const s = pad ? String(v).padStart(pad, '0') : String(v);
+    el.innerHTML = sfx ? `${s}<sup>${sfx}</sup>` : s;
+  };
+  if (RM) { put(target); return; }
+  put(0);
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    const t0 = performance.now(), D = 1200;
+    const run = ts => {
+      const k = clamp((ts - t0) / D, 0, 1);
+      put(Math.round(target * (1 - Math.pow(1 - k, 4))));
+      if (k < 1) requestAnimationFrame(run);
+    };
+    requestAnimationFrame(run);
+  }), { threshold: 0.5 });
+  io.observe(el);
+});
+
+/* ---------------------------------------------------------------
+   6. SCROLL: progress bar, sticky nav, active link, timeline fill
+--------------------------------------------------------------- */
+const nav = $('#nav'), bar = $('#progress'), tlLine = $('#tlLine'), tl = $('.tl');
+const links = $$('.nav__link');
+const secs = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
+let ticking = false;
+
+const onScroll = () => {
+  const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.transform = `scaleX(${max > 0 ? clamp(y / max, 0, 1) : 0})`;
+  nav.classList.toggle('stuck', y > 24);
+
+  let cur = -1;
+  secs.forEach((s, i) => { if (s.getBoundingClientRect().top <= innerHeight * 0.4) cur = i; });
+  links.forEach((a, i) => a.classList.toggle('active', i === cur));
+
+  if (tl && tlLine) {
+    const r = tl.getBoundingClientRect();
+    const p = clamp((innerHeight * 0.72 - r.top) / r.height, 0, 1);
+    tlLine.style.setProperty('--p', p.toFixed(3));
+  }
+  ticking = false;
+};
+addEventListener('scroll', () => {
+  if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+}, { passive: true });
+onScroll();
+
+/* ---------------------------------------------------------------
+   7. POINTER: ambient spotlight + card / button light tracking
+--------------------------------------------------------------- */
+if (!RM && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  const spot = $('.spot');
+  let tx = 50, ty = 20, cx = 50, cy = 20;
+  addEventListener('pointermove', e => {
+    tx = e.clientX / innerWidth * 100;
+    ty = e.clientY / innerHeight * 100;
+  }, { passive: true });
+  (function ease() {
+    cx += (tx - cx) * 0.055; cy += (ty - cy) * 0.055;
+    spot.style.setProperty('--mx', cx.toFixed(2) + '%');
+    spot.style.setProperty('--my', cy.toFixed(2) + '%');
+    requestAnimationFrame(ease);
+  })();
+
+  const trackLight = (sel, xv, yv) => $$(sel).forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty(xv, (e.clientX - r.left) + 'px');
+      el.style.setProperty(yv, (e.clientY - r.top) + 'px');
+    });
+  });
+  trackLight('.card, .ip__card', '--cx', '--cy');
+  trackLight('.btn', '--bx', '--by');
+
+  // magnetic buttons
+  $$('.btn').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      el.style.transform = `translate(${dx * 5}px, ${dy * 5 - 2}px)`;
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+  });
+}
+
+/* ---------------------------------------------------------------
+   8. MOBILE MENU
+--------------------------------------------------------------- */
+const burger = $('#burger'), sheet = $('#sheet');
+const setMenu = open => {
+  burger.classList.toggle('open', open);
+  sheet.classList.toggle('open', open);
+  document.body.classList.toggle('is-locked', open);
+  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  $$('#sheet a').forEach((a, i) => a.style.transitionDelay = open ? `${0.09 + i * 0.05}s` : '0s');
+};
+burger.addEventListener('click', () => setMenu(!sheet.classList.contains('open')));
+$$('#sheet a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+})();
+</script>
+
+</body>
+</html>
